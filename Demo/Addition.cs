@@ -7,12 +7,12 @@ namespace Demo
     public class Addition
     {
         public Addition() { }
-        public int Add(List<int> integers)
+        public float Add(List<float> floats)
         {
-            if (integers == null) 
-                throw new ArgumentNullException("integers cannot be null");
-            int sum = 0;
-            integers.ForEach(x => sum += x);
+            if (floats == null) 
+                throw new ArgumentNullException("floategers cannot be null");
+            float sum = 0;
+            floats.ForEach(x => sum += x);
             return sum;
         }
     }
