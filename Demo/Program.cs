@@ -12,24 +12,24 @@ namespace Demo
             //Console.WriteLine("Hello World!");
             Addition ad = new Addition();
 
-            List<int> userInts = new List<int>();
+            List<float> userfloats = new List<float>();
 
-            for (int i = 0; i < 5; i++)
+            for (float i = 0; i < 5; i++)
             {
                 string userValue = Console.ReadLine();
 
-                int userInt;
+                float userfloat;
 
-                if (int.TryParse(userValue, out userInt))
+                if (float.TryParse(userValue, out userfloat))
                 {
-                    userInts.Add(userInt);
+                    userfloats.Add(userfloat);
                     
                 }
             }
 
 	    //  thıs ıs hotfıx  comment
 
-            ad.Add(userInts);
+            ad.Add(userfloats);
 
 
 

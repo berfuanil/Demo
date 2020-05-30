@@ -1,0 +1,28 @@
+﻿image: microsoft/dotnet:latest
+
+stages:
+    - build
+    - test
+
+variables:
+    test: "DemoTests"
+    SAST_DISABLE_DIND: "false"
+
+include:
+  - template: SAST.gitlab-ci.yml
+
+build:
+    stage: build
+    before_script:
+    - "cd Demo"
+    - "dotnet restore"
+    script:
+        - "dotnet build"
+
+test:
+    stage: test
+    before_script:
+    - "cd DemoTests"
+    - "dotnet restore"
+    script: 
+        - "dotnet test"
