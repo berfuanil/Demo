@@ -7,7 +7,8 @@ stages:
 variables:
     test: "DemoTests"
 
-
+include:
+  - template: SAST.gitlab-ci.yml
 
 build:
     stage: build
