@@ -22,6 +22,7 @@ build:
 
 test:
     stage: test
+    artifacts:
     before_script:
     - "cd DemoTests"
     - "dotnet restore"
@@ -31,6 +32,8 @@ test:
 deploy:
   stage: deploy
   image: microsoft/azure-cli
+  dependencies:
+    - test
   script:
     - az storage blob delete-batch -s "\$web" --connection-string $AZURE_STORAGE_CONNECTION_STRING
     - az storage blob upload-batch -d "\$web" -s build --connection-string $AZURE_STORAGE_CONNECTION_STRING
