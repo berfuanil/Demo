@@ -18,8 +18,8 @@ build:
     - "cd Demo"
     - "dotnet restore"
     artifacts:
-        paths:
-          - ./
+       paths:
+          - "./"
         scripts:
           - "dotnet build"
         only:
