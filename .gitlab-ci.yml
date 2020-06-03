@@ -36,6 +36,6 @@ deploy:
     - test
   script:
     - az storage blob delete-batch -s "\$web" --connection-string $AZURE_STORAGE_CONNECTION_STRING
-    - az storage blob upload-batch -d "\$web" -s build --connection-string $AZURE_STORAGE_CONNECTION_STRING
+    - az storage blob upload-batch -d "\$web" -s Demo\bin\Debug\netcoreapp2.1 --connection-string $AZURE_STORAGE_CONNECTION_STRING
   only:
     - master
