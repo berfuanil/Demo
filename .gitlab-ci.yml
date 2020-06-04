@@ -42,3 +42,10 @@ deploy:
     - az storage blob upload-batch -d "\$web" -s ./ --connection-string $AZURE_STORAGE_CONNECTION_STRING
   only:
     - master
+---
+metrics:
+  script:
+    - echo 'metric_name metric_value' > metrics.txt
+  artifacts:
+    reports:
+      metrics: metrics.txt
