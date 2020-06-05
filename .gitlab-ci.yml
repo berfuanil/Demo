@@ -49,3 +49,51 @@ metrics:
   artifacts:
     reports:
       metrics: metrics.txt
+
+---
+
+stages:
+  - iac_validate
+  - iac_plan
+  - iac_apply
+
+default:
+  image:
+    name: hashicorp/terraform:latest
+    entrypoint:
+      ["/bin/sh", "-c"]
+  before_script:
+    - terraform init
+  cache:
+    key: terraform
+    paths:
+      - .terraform
+
+terraform_validate:
+  stage: iac_validate
+  script:
+    - terraform validate
+  except:
+    refs:
+      - master
+
+terraform_plan:
+  stage: iac_plan
+  script: 
+    - terraform plan --out plan
+  only:
+    refs:
+      - master
+  artifacts:
+    paths:
+      - plan
+
+terraform_apply:
+  stage: iac_apply
+  script:
+    - terraform apply --auto-approve plan
+  when: manual
+  allow_failure: false
+  only:
+    refs:
+      - master
